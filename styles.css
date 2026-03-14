@@ -6,64 +6,85 @@
 }
 
 body {
-  background-color: #222;
+  background-image: url(background/pexels-olli-29250442.jpg);
+  background-size: cover;
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .search-icon {
-  width: 16px;
+  width: 7px;
 }
-
-.card {
-  width: 90%;
+.Theweather {
+  display: none;
+}
+.Weather-card {
+  width: 300px;
   max-width: 470px;
-  background: linear-gradient(135deg, #00feba, #5b548a);
-  color: #fff;
-  margin: 100px auto 0;
+  color: #ebfffc;
+
+  border: outset #ebfffc;
   border-radius: 20px;
-  padding: 40px 35px;
+  border-width: 2px;
+  padding-top: 10px;
   text-align: center;
+  margin-top: 10px;
+
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px); /* Glaseffekt med suddig bakgrund */
 }
 
 .search {
   width: 100%;
+  margin-bottom: 10px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: center;
 }
 input {
-  border: 0;
+  border: 1;
   outline: 0;
   background: #ebfffc;
   color: #555;
   padding: 10px 25px;
-  height: 60px;
+  height: 10px;
+  width: 150px;
   border-radius: 30px;
-  flex: 1;
+
   margin-right: 16px;
-  font-size: 18px;
+  font-size: 12px;
 }
 
-button {
-  border: 0;
+.search-button {
+  border: 1;
   outline: 0;
   background: #ebfffc;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .weather-icon {
-  width: 170px;
+  width: 100px;
   margin-top: 30px;
 }
 .weather h1 {
-  font-size: 80px;
+  font-size: 40px;
   font-weight: 500;
 }
 .weather h2 {
-  font-size: 45px;
-  font-weight: 400px;
+  font-size: 25px;
+
   margin-top: -10px;
 }
 
@@ -72,37 +93,130 @@ button {
 }
 
 .details {
+  width: 300px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  margin-top: 50px;
+  justify-content: space-around;
+  margin-bottom: 10px;
+
+  margin-top: 20px;
 }
 
 .col {
+  font-size: 10px;
   display: flex;
   align-items: center;
   text-align: left;
 }
 
 .col img {
-  width: 40px;
+  width: 30px;
   margin-right: 10px;
 }
 
 .humidity,
 .wind {
-  font-size: 28px;
-  margin-top: -6px;
-}
-.weather{
-  display: none;
+  font-size: 18px;
 }
 
-.error{
+.error {
   text-align: left;
   margin-left: 10px;
   font-size: 14px;
   margin-top: 10px;
   display: none;
+}
+
+/*style for first-page*/
+.buttonBack {
+  width: 130px;
+  border-radius: 20px;
+  margin-top: 10px;
+  background-color: #ffffff;
+}
+.container {
+  width: 100vw;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-size: cover;
+}
+.buttonPage2 {
+  width: 130px;
+  border-radius: 20px;
+  border-style: outset;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*style for 5 days weather*/
+
+#inputContainer {
+  width: 80%;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+#cityInput {
+  font-size: 10px;
+  text-align: center;
+}
+
+#inputContainer {
+  display: flex;
+  align-items: center;
+}
+
+#cityName {
+  font-size: 35px;
+  color: #ebfffc;
+  padding-top: 80px;
+}
+
+#weatherContainer {
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  height: 100;
+  width: 100vw;
+}
+
+#iconsContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  height: 140px;
+  width: 80vw;
+
+  display: flex;
+  justify-content: center;
+}
+.icons {
+  border: 5px #ebfffc outset;
+  border-radius: 20px;
+  margin-right: 10px;
+  width: 50%;
+  text-align: center;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
+}
+#btnBack {
+  border-radius: 20px;
+  border-style: outset;
+  width: 10%;
+  font-size: 10px;
+  margin-right: 35px;
 }

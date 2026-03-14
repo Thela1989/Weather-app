@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>väderprognos</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  </head>
+  <body onload="defaultScreen()">
+    <main>
+      <h1 id="para1">5 dagar väderprognos</h1>
+      <p id="inputContainer">
+        <input placeholder="Sök på stad" type="text" id="cityInput" /><button
+          id="5daysBtn"
+          class="search-button"
+        >
+          <img alt="search icon" class="search-icon" src="images/search.png" />
+        </button>
+      </p>
+
+      <button id="btnBack">Idag</button>
+      <h2 id="cityName">Göteborg</h2>
+    </main>
+    <div id="weatherContainer">
+      <div id="iconsContainer">
+        <div class="icons">
+          <p class="weather" id="day1"></p>
+
+          <div class="image">
+            <img
+              src="images.5days/small.cloud.png"
+              class="imgClass"
+              id="img1"
+              alt=""
+            />
+          </div>
+          <p class="minValues" id="day1Min">Loading</p>
+          <p class="maxValues" id="day1Max">Loading</p>
+        </div>
+        <div class="icons">
+          <p class="weather" id="day2"></p>
+          <div class="image">
+            <img
+              src="images.5days/small.cloud.png"
+              class="imgClass"
+              id="img2"
+              alt=""
+            />
+          </div>
+          <p class="minValues" id="day2Min">Loading</p>
+          <p class="maxValues" id="day2Max">Loading</p>
+        </div>
+        <div class="icons">
+          <p class="weather" id="day3"></p>
+          <div class="image">
+            <img
+              src="images.5days/small.cloud.png"
+              class="imgClass"
+              id="img3"
+              alt=""
+            />
+          </div>
+          <p class="minValues" id="day3Min">Loading</p>
+          <p class="maxValues" id="day3Max">Loading</p>
+        </div>
+        <div class="icons">
+          <p class="weather" id="day4"></p>
+          <div class="image">
+            <img
+              src="images.5days/small.cloud.png"
+              class="imgClass"
+              id="img4"
+              alt=""
+            />
+          </div>
+          <p class="minValues" id="day4Min">Loading</p>
+          <p class="maxValues" id="day4Max">Loading</p>
+        </div>
+        <div class="icons">
+          <p class="weather" id="day5"></p>
+          <div class="image">
+            <img
+              src="images.5days/small.cloud.png"
+              class="imgClass"
+              id="img5"
+              alt=""
+            />
+          </div>
+          <p class="minValues" id="day5Min">Loading</p>
+          <p class="maxValues" id="day5Max">Loading</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* URL + API KEY
+      https://api.openweathermap.org/data/2.5/forecast?q=stockholm&appid=34b396dc8344f9728f86d67ff78aeab3*/
+      const Header = document.querySelector("h1");
+      Header.style.color = "#009999";
+      const buttonStart = document.querySelector("#btnBack");
+      buttonStart.style.color = "#009999";
+      buttonStart.style.backgrounColor = "##ebfffc";
+      const searchBtn = document.getElementById("5daysBtn");
+
+      searchBtn.addEventListener("click", GetInfo);
+
+      searchBtn.style.color = "black";
+      searchBtn.style.backgroundColor = "#ebfffc";
+      searchBtn.style.border = "outset #ebfffc";
+      searchBtn.style.borderRadius = "30%";
+      searchBtn.style.cursor = "pointer";
+
+      buttonStart.addEventListener("mouseover", () => {
+        buttonStart.style.color = "#fff";
+        buttonStart.style.backgroundColor = "#009999";
+        buttonStart.style.cursor = "pointer";
+      });
+      buttonStart.addEventListener("mouseout", () => {
+        buttonStart.style.backgroundColor = "#ebfffc";
+        buttonStart.style.color = "#009999";
+      });
+
+      function defaultScreen() {
+        document.getElementById("cityInput").defaultValue = "Göteborg";
+        GetInfo();
+      }
+      const ButtonStart = document.querySelector("#btnBack");
+      ButtonStart.addEventListener("click", () => {
+        window.location = "start.html";
+      });
+      function GetInfo() {
+        const newName = document.getElementById("cityInput");
+        const cityName = document.getElementById("cityName");
+        cityName.innerHTML = newName.value;
+        console.log(newName.value);
+        const URL =
+          "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
+        /*API KEY"&appid=34b396dc8344f9728f86d67ff78aeab3"*/
+
+        fetch(URL + newName.value + "&appid=34b396dc8344f9728f86d67ff78aeab3")
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            for (let i = 0; i < 5; i++) {
+              console.log("Date 2:", data.list[i].dt);
+
+              let dayname = new Date(data.list[i].dt * 1000).getDay();
+              let datename = new Date(data.list[i].dt * 1000).toDateString();
+
+              console.log(weekDay[dayname]);
+              document.getElementById("day" + (i + 1) + "Min").innerHTML =
+                "Min:" + Number(data.list[i].main.temp_min).toFixed(1) + "°";
+
+              document.getElementById("day" + (i + 1) + "Max").innerHTML =
+                "Max:" + Number(data.list[i].main.temp_max).toFixed(1) + "°";
+              document.getElementById("img" + (i + 1)).src =
+                document.getElementById("img" + (i + 1)).src =
+                  "https://openweathermap.org/img/wn/" +
+                  data.list[i].weather[0].icon +
+                  ".png";
+            }
+          });
+
+        const d = new Date();
+        const weekDay = [
+          "Söndag",
+          "Måndag",
+          "Tisdag",
+          "Onsdag",
+          "Torsdag",
+          "Fredag",
+          "Lördag",
+        ];
+        /*this check what day it is*/
+        function checkDay(day) {
+          if (day + d.getDay() > 6) {
+            return day + d.getDay() - 7;
+          } else {
+            return day + d.getDay();
+          }
+        }
+        for (i = 0; i < 5; i++) {
+          document.getElementById("day" + (i + 1)).innerHTML =
+            weekDay[checkDay(i)];
+        }
+      }
+    </script>
+  </body>
+</html>
