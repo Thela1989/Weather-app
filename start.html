@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -101,22 +101,7 @@
       searchBtn.addEventListener("click", () => {
         checkWeather(searchBox.value);
       });
-      /*style*/
-      const Header = document.querySelector("h1");
-      Header.style.color = "#009999";
       const buttonPage2 = document.querySelector(".buttonPage2");
-      buttonPage2.style.color = "#009999";
-      buttonPage2.style.backgrounColor = "#ebfffc";
-
-      buttonPage2.addEventListener("mouseover", () => {
-        buttonPage2.style.color = "#fff";
-        buttonPage2.style.backgroundColor = "#009999";
-        buttonPage2.style.cursor = "pointer";
-      });
-      buttonPage2.addEventListener("mouseout", () => {
-        buttonPage2.style.backgroundColor = "#ebfffc";
-        buttonPage2.style.color = "#009999";
-      });
 
       buttonPage2.addEventListener("click", () => {
         window.location = "page2.html";

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -96,30 +96,10 @@
     <script>
       /* URL + API KEY
       https://api.openweathermap.org/data/2.5/forecast?q=stockholm&appid=34b396dc8344f9728f86d67ff78aeab3*/
-      const Header = document.querySelector("h1");
-      Header.style.color = "#009999";
       const buttonStart = document.querySelector("#btnBack");
-      buttonStart.style.color = "#009999";
-      buttonStart.style.backgrounColor = "##ebfffc";
       const searchBtn = document.getElementById("5daysBtn");
 
       searchBtn.addEventListener("click", GetInfo);
-
-      searchBtn.style.color = "black";
-      searchBtn.style.backgroundColor = "#ebfffc";
-      searchBtn.style.border = "outset #ebfffc";
-      searchBtn.style.borderRadius = "30%";
-      searchBtn.style.cursor = "pointer";
-
-      buttonStart.addEventListener("mouseover", () => {
-        buttonStart.style.color = "#fff";
-        buttonStart.style.backgroundColor = "#009999";
-        buttonStart.style.cursor = "pointer";
-      });
-      buttonStart.addEventListener("mouseout", () => {
-        buttonStart.style.backgroundColor = "#ebfffc";
-        buttonStart.style.color = "#009999";
-      });
 
       function defaultScreen() {
         document.getElementById("cityInput").defaultValue = "Göteborg";
@@ -139,8 +119,8 @@
         /*API KEY"&appid=34b396dc8344f9728f86d67ff78aeab3"*/
 
         fetch(URL + newName.value + "&appid=34b396dc8344f9728f86d67ff78aeab3")
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             console.log(data);
             for (let i = 0; i < 5; i++) {
               console.log("Date 2:", data.list[i].dt);
